@@ -14,7 +14,24 @@ module "website" {
 
   bucket_name        = aws_route53_zone.this.name
   bucket_key_enabled = true
-  context            = module.this.context
+  website_configuration = [{
+    error_document = "/404.html"
+    index_document = "index.html"
+    routing_rules = [{
+      condition = {
+        http_error_code_returned_equals = null
+        key_prefix_equals               = null
+      }
+      redirect = {
+        host_name               = null
+        http_redirect_code      = null
+        protocol                = null
+        replace_key_prefix_with = null
+        replace_key_with        = null
+      }
+    }]
+  }]
+  context = module.this.context
 }
 
 module "www-website" {
@@ -23,7 +40,11 @@ module "www-website" {
 
   bucket_name        = format("www.%s", aws_route53_zone.this.name)
   bucket_key_enabled = true
-  context            = module.this.context
+  website_redirect_all_requests_to = [{
+    host_name = aws_route53_zone.this.name
+    protocol  = "https"
+  }]
+  context = module.this.context
 }
 
 module "acm_request_certificate" {
