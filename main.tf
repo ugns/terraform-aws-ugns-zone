@@ -17,19 +17,7 @@ module "website" {
   website_configuration = [{
     error_document = "/404.html"
     index_document = "index.html"
-    routing_rules = [{
-      condition = {
-        http_error_code_returned_equals = null
-        key_prefix_equals               = null
-      }
-      redirect = {
-        host_name               = null
-        http_redirect_code      = null
-        protocol                = null
-        replace_key_prefix_with = null
-        replace_key_with        = null
-      }
-    }]
+    routing_rules = []
   }]
   context = module.this.context
 }
