@@ -17,7 +17,7 @@ module "website" {
   website_configuration = [{
     error_document = "/404.html"
     index_document = "index.html"
-    routing_rules = []
+    routing_rules  = []
   }]
   context = module.this.context
 }
