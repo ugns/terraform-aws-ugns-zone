@@ -53,6 +53,10 @@ module "caa" {
 
   zone_id              = aws_route53_zone.this.zone_id
   caa_report_recipient = var.caa_report_recipient
+  caa_issuers = [
+    "amazon.com",
+    "letsencrypt.org"
+  ]
 }
 
 module "ses" {
