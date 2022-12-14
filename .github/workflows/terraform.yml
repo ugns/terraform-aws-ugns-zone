@@ -36,6 +36,16 @@ jobs:
           role-session-name: ugns-github-actions
           aws-region: us-east-1
 
+      - name: Assume IAM Role
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-to-assume: arn:aws:iam::072105303426:role/GitHubActionsExecution
+          role-skip-session-tagging: true
+          aws-region: us-east-1
+
       - name: Generate token
         id: generate_token
         uses: tibdex/github-app-token@v1

@@ -65,9 +65,6 @@ module "ses" {
 module "mta-sts" {
   source  = "UGNS/route53-mta-sts/aws"
   version = "0.1.1"
-  providers = {
-    aws = aws
-  }
 
   zone_id              = aws_route53_zone.this.zone_id
   tls_report_recipient = var.tls_report_recipient
